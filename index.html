@@ -3,66 +3,594 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MasterArchiveX</title>
+  <title>MasterArchiveX | Developer Portfolio</title>
+  <meta name="description" content="MasterArchiveX - Minecraft Plugin Developer and Founder of MasterStudios." />
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: white;
-      text-align: center;
-      padding: 60px 20px;
+    :root{
+      --bg:#0b1020;
+      --bg2:#11182d;
+      --card:#131c31cc;
+      --text:#f8fafc;
+      --muted:#94a3b8;
+      --line:rgba(255,255,255,0.08);
+      --accent:#8b5cf6;
+      --accent2:#38bdf8;
+      --glow:0 0 40px rgba(139,92,246,0.25);
     }
 
-    h1 {
-      font-size: 52px;
-      margin-bottom: 10px;
+    *{
+      box-sizing:border-box;
     }
 
-    p {
-      color: #cbd5e1;
-      font-size: 18px;
+    html{
+      scroll-behavior:smooth;
     }
 
-    h2 {
-      margin-top: 50px;
-      font-size: 30px;
+    body{
+      margin:0;
+      font-family:Inter, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(139,92,246,0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(56,189,248,0.15), transparent 28%),
+        linear-gradient(180deg, #0a0f1d 0%, #0b1020 45%, #0f172a 100%);
+      min-height:100vh;
     }
 
-    .projects {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      margin-top: 20px;
+    a{
+      color:inherit;
+      text-decoration:none;
     }
 
-    .card {
-      background: #1e293b;
-      padding: 20px;
-      width: 320px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    .container{
+      width:min(1120px, calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter:blur(16px);
+      background:rgba(8,12,24,0.65);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:16px 0;
+    }
+
+    .brand{
+      font-size:1.1rem;
+      font-weight:700;
+      letter-spacing:0.2px;
+    }
+
+    .brand span{
+      background:linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:24px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    .nav-links a:hover{
+      color:var(--text);
+    }
+
+    .hero{
+      padding:88px 0 56px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr 0.9fr;
+      gap:32px;
+      align-items:center;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:10px 14px;
+      border:1px solid rgba(139,92,246,0.3);
+      background:rgba(139,92,246,0.10);
+      color:#ddd6fe;
+      border-radius:999px;
+      font-size:0.9rem;
+      margin-bottom:20px;
+    }
+
+    h1{
+      margin:0 0 14px;
+      font-size:clamp(2.5rem, 6vw, 5rem);
+      line-height:0.98;
+      letter-spacing:-1.5px;
+    }
+
+    .gradient{
+      background:linear-gradient(90deg, #c4b5fd 0%, #8b5cf6 35%, #38bdf8 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:680px;
+      color:var(--muted);
+      font-size:1.06rem;
+      line-height:1.75;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:28px;
+    }
+
+    .btn{
+      padding:14px 20px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:600;
+      transition:0.2s ease;
+    }
+
+    .btn-primary{
+      background:linear-gradient(90deg, var(--accent), var(--accent2));
+      color:white;
+      border:none;
+      box-shadow:var(--glow);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      opacity:0.96;
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,0.04);
+      color:var(--text);
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,0.08);
+      transform:translateY(-2px);
+    }
+
+    .hero-card{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(19,28,49,0.95), rgba(10,15,29,0.95));
+      border-radius:24px;
+      padding:22px;
+      box-shadow:var(--glow);
+    }
+
+    .window-dots{
+      display:flex;
+      gap:8px;
+      margin-bottom:16px;
+    }
+
+    .dot{
+      width:11px;
+      height:11px;
+      border-radius:50%;
+      background:#475569;
+    }
+
+    .dot:nth-child(1){background:#f87171;}
+    .dot:nth-child(2){background:#fbbf24;}
+    .dot:nth-child(3){background:#4ade80;}
+
+    .code{
+      font-family:Consolas, monospace;
+      background:#09101f;
+      border:1px solid rgba(255,255,255,0.05);
+      border-radius:18px;
+      padding:18px;
+      color:#dbeafe;
+      line-height:1.8;
+      font-size:0.95rem;
+      overflow:auto;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:16px;
+      margin-top:28px;
+    }
+
+    .stat{
+      background:rgba(255,255,255,0.04);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+    }
+
+    .stat h3{
+      margin:0 0 6px;
+      font-size:1.4rem;
+    }
+
+    .stat p{
+      margin:0;
+      color:var(--muted);
+      font-size:0.92rem;
+    }
+
+    section{
+      padding:40px 0;
+    }
+
+    .section-title{
+      margin:0 0 10px;
+      font-size:2rem;
+      letter-spacing:-0.6px;
+    }
+
+    .section-sub{
+      margin:0 0 24px;
+      color:var(--muted);
+      line-height:1.7;
+      max-width:760px;
+    }
+
+    .grid{
+      display:grid;
+      gap:18px;
+    }
+
+    .skills-grid{
+      grid-template-columns:repeat(3, 1fr);
+    }
+
+    .projects-grid{
+      grid-template-columns:repeat(3, 1fr);
+    }
+
+    .card{
+      border:1px solid var(--line);
+      background:var(--card);
+      backdrop-filter:blur(16px);
+      border-radius:22px;
+      padding:22px;
+      transition:0.22s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(139,92,246,0.35);
+      box-shadow:0 20px 40px rgba(0,0,0,0.25);
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      font-size:1.12rem;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:0.97rem;
+    }
+
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:16px;
+    }
+
+    .tag{
+      font-size:0.8rem;
+      padding:8px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.07);
+      color:#cbd5e1;
+    }
+
+    .about-card{
+      padding:28px;
+    }
+
+    .links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .link-pill{
+      padding:12px 16px;
+      border-radius:14px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid var(--line);
+      color:#e2e8f0;
+    }
+
+    .link-pill:hover{
+      background:rgba(255,255,255,0.08);
+    }
+
+    .footer{
+      padding:32px 0 50px;
+      text-align:center;
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .skills-grid,
+      .projects-grid,
+      .stats{
+        grid-template-columns:repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px){
+      .nav-inner{
+        gap:14px;
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .skills-grid,
+      .projects-grid,
+      .stats{
+        grid-template-columns:1fr;
+      }
+
+      .hero{
+        padding-top:64px;
+      }
+
+      .hero-actions{
+        flex-direction:column;
+      }
+
+      .btn{
+        width:100%;
+      }
     }
   </style>
 </head>
 <body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand"><span>MasterArchiveX</span></div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-  <h1>MasterArchiveX</h1>
-  <p>Minecraft Plugin Developer • MasterStudios</p>
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="badge">Available for development work</div>
+        <h1>
+          Building <span class="gradient">premium Minecraft systems</span> with real developer style.
+        </h1>
+        <p>
+          I’m MasterArchiveX, a Minecraft plugin developer and founder of MasterStudios. I build custom plugins, advanced Skripts, Discord integrations, server systems, and branded gameplay experiences designed to feel polished, modern, and production-ready.
+        </p>
 
-  <h2>Projects</h2>
-  <div class="projects">
-    <div class="card">MasterPunish</div>
-    <div class="card">MasterLink</div>
-    <div class="card">ArchiveSMP</div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a class="btn btn-secondary" href="#contact">Contact Me</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <h3>Java</h3>
+            <p>Primary development stack</p>
+          </div>
+          <div class="stat">
+            <h3>Paper</h3>
+            <p>Plugin ecosystem focus</p>
+          </div>
+          <div class="stat">
+            <h3>Skript</h3>
+            <p>Advanced custom systems</p>
+          </div>
+          <div class="stat">
+            <h3>Branding</h3>
+            <p>MasterStudios identity</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="window-dots">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="code">
+const developer = {<br>
+&nbsp;&nbsp;name: "MasterArchiveX",<br>
+&nbsp;&nbsp;role: "Minecraft Plugin Developer",<br>
+&nbsp;&nbsp;brand: "MasterStudios",<br>
+&nbsp;&nbsp;focus: ["Java", "Skript", "Paper", "Discord Integration"],<br>
+&nbsp;&nbsp;projects: ["MasterLink", "MasterPunish", "ArchiveSMP"]<br>
+};<br><br>
+console.log("Building premium server experiences.");
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container">
+      <div class="card about-card">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-sub">
+          I focus on creating custom Minecraft development that looks clean, runs smoothly, and feels premium. My work includes custom server systems, plugin development, rank and punishment systems, Discord-to-Minecraft integrations, SMP mechanics, and branded setups for serious communities.
+        </p>
+        <div class="links">
+          <a class="link-pill" href="#">GitHub</a>
+          <a class="link-pill" href="#">BuiltByBit</a>
+          <a class="link-pill" href="#">Discord</a>
+          <a class="link-pill" href="#">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title">Skills & Stack</h2>
+      <p class="section-sub">
+        A clean and professional overview of the tools and areas I work in most.
+      </p>
+
+      <div class="grid skills-grid">
+        <div class="card">
+          <h3>Java Plugin Development</h3>
+          <p>Custom Paper and Spigot plugins built for performance, configuration, and server usability.</p>
+        </div>
+        <div class="card">
+          <h3>Skript Systems</h3>
+          <p>Advanced gameplay logic, utilities, commands, GUI systems, and server-side automation.</p>
+        </div>
+        <div class="card">
+          <h3>Discord Integration</h3>
+          <p>Linking systems, bot-connected workflows, role sync, verification, and community automation.</p>
+        </div>
+        <div class="card">
+          <h3>Server Infrastructure</h3>
+          <p>Permissions, moderation systems, menus, placeholders, ranks, and polished server management setups.</p>
+        </div>
+        <div class="card">
+          <h3>Branding & Product Design</h3>
+          <p>Developer-focused product presentation, release styling, visual consistency, and clean product identity.</p>
+        </div>
+        <div class="card">
+          <h3>Minecraft SMP Development</h3>
+          <p>Lifesteal-inspired mechanics, economy features, custom progression, and premium SMP systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-sub">
+        Example projects presented in the same style modern developer portfolios usually show their best work.
+      </p>
+
+      <div class="grid projects-grid">
+        <div class="card">
+          <h3>MasterLink</h3>
+          <p>Discord-to-Minecraft linking plugin with verification flow, role sync support, and integrated server-side account connection systems.</p>
+          <div class="tags">
+            <span class="tag">Java</span>
+            <span class="tag">Paper</span>
+            <span class="tag">Discord</span>
+            <span class="tag">LuckPerms</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>MasterPunish</h3>
+          <p>Custom punishment system with staff tools, offense tracking, permission control, and polished moderation flow.</p>
+          <div class="tags">
+            <span class="tag">Java</span>
+            <span class="tag">Punishments</span>
+            <span class="tag">Moderation</span>
+            <span class="tag">History</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>ArchiveSMP</h3>
+          <p>A custom SMP brand with lore-driven progression, premium visuals, lifesteal mechanics, and branded gameplay systems.</p>
+          <div class="tags">
+            <span class="tag">SMP</span>
+            <span class="tag">Lifesteal</span>
+            <span class="tag">Branding</span>
+            <span class="tag">Gameplay</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>MasterSUS</h3>
+          <p>Custom server-side features and utilities designed to expand gameplay and improve polished server experiences.</p>
+          <div class="tags">
+            <span class="tag">Custom Systems</span>
+            <span class="tag">Server Tools</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>MasterStudios</h3>
+          <p>The overall development brand powering plugins, setups, products, support systems, and premium Minecraft experiences.</p>
+          <div class="tags">
+            <span class="tag">Brand</span>
+            <span class="tag">Products</span>
+            <span class="tag">Development</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Custom Setups</h3>
+          <p>Full server configuration work including permissions, store setups, menus, announcement styling, and polished deployment structure.</p>
+          <div class="tags">
+            <span class="tag">Setups</span>
+            <span class="tag">Configs</span>
+            <span class="tag">Optimization</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="card about-card">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-sub">
+          Need a custom plugin, a premium server setup, or a branded Minecraft system? Reach out through Discord, GitHub, or your preferred contact platform.
+        </p>
+        <div class="links">
+          <a class="link-pill" href="#">Discord: MasterArchiveX</a>
+          <a class="link-pill" href="#">GitHub Profile</a>
+          <a class="link-pill" href="#">BuiltByBit Store</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    © 2026 MasterArchiveX · Built with GitHub Pages
   </div>
-
-  <h2>Skills</h2>
-  <p>Java • Minecraft Plugins • Skript • Server Development</p>
-
-  <h2>Contact</h2>
-  <p>Discord: MasterArchiveX</p>
-
 </body>
 </html>
