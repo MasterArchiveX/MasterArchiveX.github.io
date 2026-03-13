@@ -7,15 +7,17 @@
   <meta name="description" content="MasterArchiveX - Minecraft Plugin Developer and Founder of MasterStudios." />
   <style>
     :root{
-      --bg:#0b1020;
-      --bg2:#11182d;
-      --card:#131c31cc;
+      --bg:#070b16;
+      --bg2:#0d1324;
+      --panel:rgba(17,24,39,0.72);
+      --panel-2:rgba(15,23,42,0.88);
       --text:#f8fafc;
       --muted:#94a3b8;
       --line:rgba(255,255,255,0.08);
       --accent:#8b5cf6;
       --accent2:#38bdf8;
-      --glow:0 0 40px rgba(139,92,246,0.25);
+      --accent3:#c084fc;
+      --shadow:0 20px 60px rgba(0,0,0,0.35);
     }
 
     *{
@@ -31,10 +33,62 @@
       font-family:Inter, Arial, sans-serif;
       color:var(--text);
       background:
-        radial-gradient(circle at top left, rgba(139,92,246,0.18), transparent 30%),
-        radial-gradient(circle at top right, rgba(56,189,248,0.15), transparent 28%),
-        linear-gradient(180deg, #0a0f1d 0%, #0b1020 45%, #0f172a 100%);
+        radial-gradient(circle at 15% 20%, rgba(139,92,246,0.22), transparent 22%),
+        radial-gradient(circle at 85% 10%, rgba(56,189,248,0.18), transparent 20%),
+        radial-gradient(circle at 50% 80%, rgba(192,132,252,0.12), transparent 26%),
+        linear-gradient(180deg, #070b16 0%, #0b1020 45%, #0f172a 100%);
       min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size:44px 44px;
+      mask-image:linear-gradient(to bottom, rgba(255,255,255,0.35), transparent 80%);
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .glow{
+      position:fixed;
+      width:420px;
+      height:420px;
+      border-radius:50%;
+      filter:blur(80px);
+      opacity:0.18;
+      pointer-events:none;
+      z-index:0;
+      animation:floatGlow 10s ease-in-out infinite;
+    }
+
+    .glow.one{
+      top:-60px;
+      left:-80px;
+      background:var(--accent);
+    }
+
+    .glow.two{
+      top:120px;
+      right:-120px;
+      background:var(--accent2);
+      animation-delay:-3s;
+    }
+
+    .glow.three{
+      bottom:-120px;
+      left:35%;
+      background:var(--accent3);
+      animation-delay:-6s;
+    }
+
+    @keyframes floatGlow{
+      0%,100%{transform:translateY(0) translateX(0) scale(1);}
+      50%{transform:translateY(20px) translateX(10px) scale(1.06);}
     }
 
     a{
@@ -43,16 +97,18 @@
     }
 
     .container{
-      width:min(1120px, calc(100% - 40px));
+      width:min(1160px, calc(100% - 40px));
       margin:0 auto;
+      position:relative;
+      z-index:1;
     }
 
     .nav{
       position:sticky;
       top:0;
-      z-index:100;
+      z-index:50;
       backdrop-filter:blur(16px);
-      background:rgba(8,12,24,0.65);
+      background:rgba(7,11,22,0.72);
       border-bottom:1px solid var(--line);
     }
 
@@ -60,17 +116,18 @@
       display:flex;
       justify-content:space-between;
       align-items:center;
-      padding:16px 0;
+      padding:18px 0;
+      gap:18px;
     }
 
     .brand{
+      font-weight:800;
       font-size:1.1rem;
-      font-weight:700;
       letter-spacing:0.2px;
     }
 
     .brand span{
-      background:linear-gradient(90deg, var(--accent), var(--accent2));
+      background:linear-gradient(90deg, var(--accent3), var(--accent), var(--accent2));
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       background-clip:text;
@@ -90,48 +147,50 @@
     }
 
     .hero{
-      padding:88px 0 56px;
+      padding:84px 0 50px;
     }
 
     .hero-grid{
       display:grid;
-      grid-template-columns:1.2fr 0.9fr;
-      gap:32px;
+      grid-template-columns:1.15fr 0.95fr;
+      gap:28px;
       align-items:center;
     }
 
     .badge{
-      display:inline-block;
-      padding:10px 14px;
-      border:1px solid rgba(139,92,246,0.3);
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      border:1px solid rgba(139,92,246,0.26);
       background:rgba(139,92,246,0.10);
       color:#ddd6fe;
       border-radius:999px;
+      padding:10px 14px;
       font-size:0.9rem;
-      margin-bottom:20px;
+      margin-bottom:18px;
+      box-shadow:0 0 30px rgba(139,92,246,0.12);
     }
 
     h1{
-      margin:0 0 14px;
-      font-size:clamp(2.5rem, 6vw, 5rem);
-      line-height:0.98;
-      letter-spacing:-1.5px;
+      margin:0 0 16px;
+      font-size:clamp(2.8rem, 6vw, 5.4rem);
+      line-height:0.95;
+      letter-spacing:-2px;
     }
 
     .gradient{
-      background:linear-gradient(90deg, #c4b5fd 0%, #8b5cf6 35%, #38bdf8 100%);
+      background:linear-gradient(90deg, #ddd6fe 0%, #8b5cf6 40%, #38bdf8 100%);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       background-clip:text;
       color:transparent;
     }
 
-    .hero p{
-      margin:0;
-      max-width:680px;
+    .hero-text{
+      max-width:700px;
       color:var(--muted);
-      font-size:1.06rem;
-      line-height:1.75;
+      line-height:1.8;
+      font-size:1.05rem;
     }
 
     .hero-actions{
@@ -143,113 +202,149 @@
 
     .btn{
       padding:14px 20px;
-      border-radius:14px;
+      border-radius:16px;
+      font-weight:700;
+      transition:0.22s ease;
       border:1px solid var(--line);
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      font-weight:600;
-      transition:0.2s ease;
     }
 
     .btn-primary{
       background:linear-gradient(90deg, var(--accent), var(--accent2));
-      color:white;
       border:none;
-      box-shadow:var(--glow);
+      box-shadow:0 12px 35px rgba(56,189,248,0.16), 0 10px 28px rgba(139,92,246,0.22);
     }
 
     .btn-primary:hover{
-      transform:translateY(-2px);
-      opacity:0.96;
+      transform:translateY(-3px);
+      filter:brightness(1.04);
     }
 
     .btn-secondary{
       background:rgba(255,255,255,0.04);
-      color:var(--text);
     }
 
     .btn-secondary:hover{
+      transform:translateY(-3px);
       background:rgba(255,255,255,0.08);
-      transform:translateY(-2px);
     }
 
-    .hero-card{
+    .hero-side{
+      display:grid;
+      gap:16px;
+    }
+
+    .glass{
       border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(19,28,49,0.95), rgba(10,15,29,0.95));
+      background:linear-gradient(180deg, rgba(17,24,39,0.82), rgba(10,15,29,0.88));
+      backdrop-filter:blur(18px);
       border-radius:24px;
-      padding:22px;
-      box-shadow:var(--glow);
+      box-shadow:var(--shadow);
+    }
+
+    .code-card{
+      padding:20px;
     }
 
     .window-dots{
       display:flex;
       gap:8px;
-      margin-bottom:16px;
+      margin-bottom:14px;
     }
 
     .dot{
       width:11px;
       height:11px;
       border-radius:50%;
-      background:#475569;
     }
 
-    .dot:nth-child(1){background:#f87171;}
+    .dot:nth-child(1){background:#fb7185;}
     .dot:nth-child(2){background:#fbbf24;}
     .dot:nth-child(3){background:#4ade80;}
 
     .code{
       font-family:Consolas, monospace;
-      background:#09101f;
+      background:#09101d;
       border:1px solid rgba(255,255,255,0.05);
       border-radius:18px;
       padding:18px;
       color:#dbeafe;
       line-height:1.8;
-      font-size:0.95rem;
+      font-size:0.92rem;
       overflow:auto;
     }
 
-    .stats{
+    .mini-grid{
       display:grid;
-      grid-template-columns:repeat(4, 1fr);
+      grid-template-columns:1fr 1fr;
       gap:16px;
-      margin-top:28px;
     }
 
-    .stat{
-      background:rgba(255,255,255,0.04);
-      border:1px solid var(--line);
-      border-radius:18px;
+    .mini-card{
       padding:18px;
+      min-height:110px;
+      transition:0.22s ease;
     }
 
-    .stat h3{
-      margin:0 0 6px;
-      font-size:1.4rem;
+    .mini-card:hover,
+    .card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(139,92,246,0.36);
+      box-shadow:0 18px 40px rgba(0,0,0,0.26);
     }
 
-    .stat p{
-      margin:0;
-      color:var(--muted);
+    .mini-title{
       font-size:0.92rem;
+      color:var(--muted);
+      margin-bottom:8px;
+    }
+
+    .mini-value{
+      font-size:1.15rem;
+      font-weight:700;
+      line-height:1.35;
+    }
+
+    .float-card{
+      position:absolute;
+      border:1px solid rgba(255,255,255,0.08);
+      background:rgba(15,23,42,0.7);
+      backdrop-filter:blur(14px);
+      border-radius:18px;
+      padding:12px 14px;
+      font-size:0.9rem;
+      color:#e2e8f0;
+      box-shadow:var(--shadow);
+      animation:floatCard 6s ease-in-out infinite;
+    }
+
+    .float-1{top:105px; right:14px;}
+    .float-2{top:360px; right:320px; animation-delay:-2s;}
+    .float-3{top:520px; right:30px; animation-delay:-4s;}
+
+    @keyframes floatCard{
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-10px);}
     }
 
     section{
-      padding:40px 0;
+      padding:42px 0;
+      position:relative;
+      z-index:1;
     }
 
     .section-title{
       margin:0 0 10px;
       font-size:2rem;
-      letter-spacing:-0.6px;
+      letter-spacing:-0.7px;
     }
 
     .section-sub{
       margin:0 0 24px;
       color:var(--muted);
-      line-height:1.7;
+      line-height:1.75;
       max-width:760px;
     }
 
@@ -268,17 +363,11 @@
 
     .card{
       border:1px solid var(--line);
-      background:var(--card);
-      backdrop-filter:blur(16px);
-      border-radius:22px;
+      background:var(--panel);
+      backdrop-filter:blur(18px);
+      border-radius:24px;
       padding:22px;
       transition:0.22s ease;
-    }
-
-    .card:hover{
-      transform:translateY(-4px);
-      border-color:rgba(139,92,246,0.35);
-      box-shadow:0 20px 40px rgba(0,0,0,0.25);
     }
 
     .card h3{
@@ -289,7 +378,7 @@
     .card p{
       margin:0;
       color:var(--muted);
-      line-height:1.7;
+      line-height:1.72;
       font-size:0.97rem;
     }
 
@@ -301,12 +390,12 @@
     }
 
     .tag{
-      font-size:0.8rem;
+      font-size:0.79rem;
       padding:8px 10px;
       border-radius:999px;
       background:rgba(255,255,255,0.05);
       border:1px solid rgba(255,255,255,0.07);
-      color:#cbd5e1;
+      color:#dbe4f1;
     }
 
     .about-card{
@@ -326,46 +415,48 @@
       background:rgba(255,255,255,0.04);
       border:1px solid var(--line);
       color:#e2e8f0;
+      transition:0.2s ease;
     }
 
     .link-pill:hover{
       background:rgba(255,255,255,0.08);
+      transform:translateY(-2px);
     }
 
     .footer{
-      padding:32px 0 50px;
+      padding:30px 0 54px;
       text-align:center;
       color:var(--muted);
       font-size:0.95rem;
+      position:relative;
+      z-index:1;
     }
 
-    @media (max-width: 980px){
+    @media (max-width: 1050px){
       .hero-grid{
         grid-template-columns:1fr;
       }
 
+      .float-card{
+        display:none;
+      }
+
       .skills-grid,
-      .projects-grid,
-      .stats{
+      .projects-grid{
         grid-template-columns:repeat(2, 1fr);
       }
     }
 
-    @media (max-width: 640px){
+    @media (max-width: 700px){
       .nav-inner{
-        gap:14px;
         flex-direction:column;
         align-items:flex-start;
       }
 
+      .mini-grid,
       .skills-grid,
-      .projects-grid,
-      .stats{
+      .projects-grid{
         grid-template-columns:1fr;
-      }
-
-      .hero{
-        padding-top:64px;
       }
 
       .hero-actions{
@@ -375,10 +466,18 @@
       .btn{
         width:100%;
       }
+
+      .hero{
+        padding-top:64px;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+  <div class="glow three"></div>
+
   <nav class="nav">
     <div class="container nav-inner">
       <div class="brand"><span>MasterArchiveX</span></div>
@@ -392,56 +491,64 @@
   </nav>
 
   <header class="hero">
-    <div class="container hero-grid">
-      <div>
-        <div class="badge">Available for development work</div>
-        <h1>
-          Building <span class="gradient">premium Minecraft systems</span> with real developer style.
-        </h1>
-        <p>
-          I’m MasterArchiveX, a Minecraft plugin developer and founder of MasterStudios. I build custom plugins, advanced Skripts, Discord integrations, server systems, and branded gameplay experiences designed to feel polished, modern, and production-ready.
-        </p>
+    <div class="container" style="position:relative;">
+      <div class="float-card float-1">⚡ Java / Paper / Skript</div>
+      <div class="float-card float-2">🧩 Premium Minecraft Systems</div>
+      <div class="float-card float-3">🚀 Founder of MasterStudios</div>
 
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#projects">View Projects</a>
-          <a class="btn btn-secondary" href="#contact">Contact Me</a>
+      <div class="hero-grid">
+        <div>
+          <div class="badge">Available for premium development work</div>
+          <h1>
+            Real <span class="gradient">developer portfolio</span> style for a Minecraft systems builder.
+          </h1>
+          <p class="hero-text">
+            I’m MasterArchiveX, a Minecraft plugin developer and founder of MasterStudios. I build custom plugins, advanced Skripts, Discord integrations, punishment systems, SMP mechanics, and polished server experiences made to look premium and feel production-ready.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn btn-secondary" href="#contact">Contact Me</a>
+          </div>
         </div>
 
-        <div class="stats">
-          <div class="stat">
-            <h3>Java</h3>
-            <p>Primary development stack</p>
-          </div>
-          <div class="stat">
-            <h3>Paper</h3>
-            <p>Plugin ecosystem focus</p>
-          </div>
-          <div class="stat">
-            <h3>Skript</h3>
-            <p>Advanced custom systems</p>
-          </div>
-          <div class="stat">
-            <h3>Branding</h3>
-            <p>MasterStudios identity</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-card">
-        <div class="window-dots">
-          <div class="dot"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
-        </div>
-        <div class="code">
+        <div class="hero-side">
+          <div class="glass code-card">
+            <div class="window-dots">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+            <div class="code">
 const developer = {<br>
 &nbsp;&nbsp;name: "MasterArchiveX",<br>
 &nbsp;&nbsp;role: "Minecraft Plugin Developer",<br>
 &nbsp;&nbsp;brand: "MasterStudios",<br>
-&nbsp;&nbsp;focus: ["Java", "Skript", "Paper", "Discord Integration"],<br>
+&nbsp;&nbsp;focus: ["Java", "Paper", "Skript", "Discord"],<br>
 &nbsp;&nbsp;projects: ["MasterLink", "MasterPunish", "ArchiveSMP"]<br>
 };<br><br>
-console.log("Building premium server experiences.");
+build("premium server experiences");
+            </div>
+          </div>
+
+          <div class="mini-grid">
+            <div class="glass mini-card">
+              <div class="mini-title">Primary Stack</div>
+              <div class="mini-value">Java + Paper API</div>
+            </div>
+            <div class="glass mini-card">
+              <div class="mini-title">Specialty</div>
+              <div class="mini-value">Minecraft Infrastructure</div>
+            </div>
+            <div class="glass mini-card">
+              <div class="mini-title">Focus</div>
+              <div class="mini-value">Custom plugins & systems</div>
+            </div>
+            <div class="glass mini-card">
+              <div class="mini-title">Brand</div>
+              <div class="mini-value">MasterStudios</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -452,7 +559,7 @@ console.log("Building premium server experiences.");
       <div class="card about-card">
         <h2 class="section-title">About Me</h2>
         <p class="section-sub">
-          I focus on creating custom Minecraft development that looks clean, runs smoothly, and feels premium. My work includes custom server systems, plugin development, rank and punishment systems, Discord-to-Minecraft integrations, SMP mechanics, and branded setups for serious communities.
+          I focus on custom Minecraft development that is clean, modern, and built like a real product. My work includes plugin development, Discord-to-Minecraft integrations, branded server systems, SMP features, moderation tools, product presentation, and polished server setups for serious communities.
         </p>
         <div class="links">
           <a class="link-pill" href="#">GitHub</a>
@@ -468,33 +575,33 @@ console.log("Building premium server experiences.");
     <div class="container">
       <h2 class="section-title">Skills & Stack</h2>
       <p class="section-sub">
-        A clean and professional overview of the tools and areas I work in most.
+        A professional overview of the main areas I build in.
       </p>
 
       <div class="grid skills-grid">
         <div class="card">
           <h3>Java Plugin Development</h3>
-          <p>Custom Paper and Spigot plugins built for performance, configuration, and server usability.</p>
+          <p>Custom Paper and Spigot plugins designed for clean structure, performance, and usability.</p>
         </div>
         <div class="card">
           <h3>Skript Systems</h3>
-          <p>Advanced gameplay logic, utilities, commands, GUI systems, and server-side automation.</p>
+          <p>Advanced gameplay logic, command systems, GUIs, automation, and server utility features.</p>
         </div>
         <div class="card">
           <h3>Discord Integration</h3>
-          <p>Linking systems, bot-connected workflows, role sync, verification, and community automation.</p>
+          <p>Account linking, role sync, verification, and community-connected server workflows.</p>
         </div>
         <div class="card">
           <h3>Server Infrastructure</h3>
-          <p>Permissions, moderation systems, menus, placeholders, ranks, and polished server management setups.</p>
+          <p>Permissions, ranks, moderation, configuration, menus, placeholders, and support systems.</p>
         </div>
         <div class="card">
           <h3>Branding & Product Design</h3>
-          <p>Developer-focused product presentation, release styling, visual consistency, and clean product identity.</p>
+          <p>Professional product presentation, release styling, visual identity, and clean product branding.</p>
         </div>
         <div class="card">
           <h3>Minecraft SMP Development</h3>
-          <p>Lifesteal-inspired mechanics, economy features, custom progression, and premium SMP systems.</p>
+          <p>Lifesteal-inspired gameplay, progression systems, custom mechanics, and premium SMP experiences.</p>
         </div>
       </div>
     </div>
@@ -504,13 +611,13 @@ console.log("Building premium server experiences.");
     <div class="container">
       <h2 class="section-title">Featured Projects</h2>
       <p class="section-sub">
-        Example projects presented in the same style modern developer portfolios usually show their best work.
+        The kind of clean project presentation modern developer portfolios usually use.
       </p>
 
       <div class="grid projects-grid">
         <div class="card">
           <h3>MasterLink</h3>
-          <p>Discord-to-Minecraft linking plugin with verification flow, role sync support, and integrated server-side account connection systems.</p>
+          <p>Discord-to-Minecraft linking plugin with verification flow, account connection, and role sync support.</p>
           <div class="tags">
             <span class="tag">Java</span>
             <span class="tag">Paper</span>
@@ -521,12 +628,12 @@ console.log("Building premium server experiences.");
 
         <div class="card">
           <h3>MasterPunish</h3>
-          <p>Custom punishment system with staff tools, offense tracking, permission control, and polished moderation flow.</p>
+          <p>Custom punishment system with offense tracking, permission control, staff tools, and polished moderation flow.</p>
           <div class="tags">
             <span class="tag">Java</span>
-            <span class="tag">Punishments</span>
             <span class="tag">Moderation</span>
             <span class="tag">History</span>
+            <span class="tag">Punishments</span>
           </div>
         </div>
 
@@ -543,7 +650,7 @@ console.log("Building premium server experiences.");
 
         <div class="card">
           <h3>MasterSUS</h3>
-          <p>Custom server-side features and utilities designed to expand gameplay and improve polished server experiences.</p>
+          <p>Custom server-side systems and utilities designed to improve gameplay and expand premium server experiences.</p>
           <div class="tags">
             <span class="tag">Custom Systems</span>
             <span class="tag">Server Tools</span>
@@ -552,7 +659,7 @@ console.log("Building premium server experiences.");
 
         <div class="card">
           <h3>MasterStudios</h3>
-          <p>The overall development brand powering plugins, setups, products, support systems, and premium Minecraft experiences.</p>
+          <p>The full development brand powering products, support systems, plugins, setups, and polished Minecraft experiences.</p>
           <div class="tags">
             <span class="tag">Brand</span>
             <span class="tag">Products</span>
@@ -562,7 +669,7 @@ console.log("Building premium server experiences.");
 
         <div class="card">
           <h3>Custom Setups</h3>
-          <p>Full server configuration work including permissions, store setups, menus, announcement styling, and polished deployment structure.</p>
+          <p>Full server configuration work including permissions, menus, stores, announcement styling, and optimized deployment.</p>
           <div class="tags">
             <span class="tag">Setups</span>
             <span class="tag">Configs</span>
@@ -578,7 +685,7 @@ console.log("Building premium server experiences.");
       <div class="card about-card">
         <h2 class="section-title">Contact</h2>
         <p class="section-sub">
-          Need a custom plugin, a premium server setup, or a branded Minecraft system? Reach out through Discord, GitHub, or your preferred contact platform.
+          Need a custom plugin, a premium setup, or a branded Minecraft system? Reach out and let’s build something polished.
         </p>
         <div class="links">
           <a class="link-pill" href="#">Discord: MasterArchiveX</a>
