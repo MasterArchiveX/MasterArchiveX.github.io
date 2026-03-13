@@ -4,16 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MasterArchiveX | Developer Portfolio</title>
-  <meta name="description" content="MasterArchiveX developer portfolio - plugins, Skripts, bots, setups, websites, and Minecraft systems." />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta name="description" content="MasterArchiveX developer portfolio - plugins, Skripts, bots, setups, websites, hosting, and Minecraft systems." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
     :root{
-      --bg:#070b16;
-      --panel:rgba(10,16,30,0.78);
-      --panel-2:rgba(13,20,38,0.88);
+      --bg:#050814;
+      --bg2:#0b1120;
+      --panel:rgba(11,17,32,0.78);
+      --panel2:rgba(15,23,42,0.82);
       --text:#f8fafc;
-      --muted:#a0aec0;
+      --muted:#94a3b8;
       --line:rgba(255,255,255,0.08);
       --accent:#8b5cf6;
       --accent2:#38bdf8;
@@ -36,11 +37,11 @@
     body{
       margin:0;
       font-family:Arial, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(139,92,246,0.18), transparent 22%),
-        radial-gradient(circle at top right, rgba(56,189,248,0.15), transparent 18%),
-        linear-gradient(180deg, #050814 0%, #090f1d 50%, #0b1120 100%);
       color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(139,92,246,0.16), transparent 24%),
+        radial-gradient(circle at top right, rgba(56,189,248,0.12), transparent 18%),
+        linear-gradient(180deg, #050814 0%, #090f1d 50%, #0b1120 100%);
       overflow-x:hidden;
     }
 
@@ -58,8 +59,8 @@
       position:sticky;
       top:0;
       z-index:100;
-      backdrop-filter:blur(14px);
       background:rgba(5,8,20,0.72);
+      backdrop-filter:blur(14px);
       border-bottom:1px solid var(--line);
     }
 
@@ -99,7 +100,7 @@
 
     .nav-links a:hover{
       color:#fff;
-      text-shadow:0 0 10px rgba(139,92,246,0.4);
+      text-shadow:0 0 12px rgba(139,92,246,0.45);
     }
 
     .hero{
@@ -116,8 +117,8 @@
       position:absolute;
       inset:0;
       background:
-        linear-gradient(90deg, rgba(5,8,20,0.92) 0%, rgba(5,8,20,0.78) 35%, rgba(5,8,20,0.35) 70%, rgba(5,8,20,0.7) 100%),
-        linear-gradient(180deg, rgba(5,8,20,0.25) 0%, rgba(5,8,20,0.65) 100%),
+        linear-gradient(90deg, rgba(5,8,20,0.92) 0%, rgba(5,8,20,0.78) 35%, rgba(5,8,20,0.42) 68%, rgba(5,8,20,0.8) 100%),
+        linear-gradient(180deg, rgba(5,8,20,0.15) 0%, rgba(5,8,20,0.62) 100%),
         url("masterarchivex%20profolio.png") center/cover no-repeat;
       z-index:0;
       transform:scale(1.02);
@@ -129,8 +130,8 @@
       inset:0;
       background:
         radial-gradient(circle at 20% 20%, rgba(139,92,246,0.18), transparent 20%),
-        radial-gradient(circle at 80% 25%, rgba(56,189,248,0.16), transparent 18%),
-        radial-gradient(circle at 50% 85%, rgba(192,132,252,0.12), transparent 24%);
+        radial-gradient(circle at 80% 22%, rgba(56,189,248,0.14), transparent 16%),
+        radial-gradient(circle at 50% 80%, rgba(192,132,252,0.10), transparent 22%);
       z-index:0;
       pointer-events:none;
     }
@@ -138,8 +139,8 @@
     .hero-content{
       position:relative;
       z-index:1;
-      padding:100px 0 80px;
-      max-width:760px;
+      max-width:780px;
+      padding:110px 0 90px;
     }
 
     .badge{
@@ -153,7 +154,7 @@
       color:#e9d5ff;
       font-size:0.92rem;
       margin-bottom:22px;
-      box-shadow:0 0 25px rgba(139,92,246,0.14);
+      box-shadow:0 0 24px rgba(139,92,246,0.14);
     }
 
     .hero h1{
@@ -173,10 +174,10 @@
 
     .hero p{
       margin:0;
-      max-width:720px;
       color:#cbd5e1;
       line-height:1.8;
       font-size:1.05rem;
+      max-width:720px;
     }
 
     .hero-actions{
@@ -207,7 +208,7 @@
 
     .btn-primary:hover{
       transform:translateY(-3px);
-      box-shadow:0 0 20px rgba(139,92,246,0.26), 0 0 30px rgba(56,189,248,0.18);
+      box-shadow:0 0 20px rgba(139,92,246,0.24), 0 0 30px rgba(56,189,248,0.16);
     }
 
     .btn-secondary{
@@ -217,7 +218,7 @@
     .btn-secondary:hover{
       transform:translateY(-3px);
       background:rgba(255,255,255,0.08);
-      box-shadow:0 0 18px rgba(139,92,246,0.18);
+      box-shadow:0 0 18px rgba(139,92,246,0.16);
     }
 
     section{
@@ -254,9 +255,10 @@
     }
 
     .about-text{
-      color:var(--muted);
-      line-height:1.9;
       max-width:900px;
+      color:#94a3b8;
+      line-height:1.8;
+      font-size:1rem;
       margin:0;
     }
 
@@ -270,23 +272,25 @@
     .skill-item{
       display:flex;
       align-items:center;
-      gap:12px;
-      padding:15px 16px;
+      gap:10px;
+      padding:14px 16px;
       border:1px solid rgba(255,255,255,0.08);
-      border-radius:16px;
-      background:rgba(15,23,42,0.58);
-      transition:0.22s ease;
+      border-radius:14px;
+      background:rgba(15,23,42,0.55);
+      color:#e2e8f0;
+      transition:0.24s ease;
+      box-shadow:0 0 0 rgba(0,0,0,0);
     }
 
     .skill-item:hover{
       transform:translateY(-4px);
-      border-color:rgba(139,92,246,0.45);
-      box-shadow:0 0 16px rgba(139,92,246,0.18);
+      border-color:rgba(139,92,246,0.38);
+      box-shadow:0 0 16px rgba(139,92,246,0.16);
     }
 
     .skill-item i{
-      color:var(--accent);
-      width:18px;
+      color:#8b5cf6;
+      min-width:18px;
       text-align:center;
     }
 
@@ -306,7 +310,7 @@
     .position-card{
       position:relative;
       overflow:hidden;
-      background:var(--panel);
+      background:var(--panel2);
       border:1px solid var(--line);
       border-radius:22px;
       padding:22px;
@@ -330,7 +334,7 @@
     .position-card:hover{
       transform:translateY(-6px);
       border-color:rgba(139,92,246,0.42);
-      box-shadow:0 0 24px rgba(139,92,246,0.14), 0 18px 45px rgba(0,0,0,0.28);
+      box-shadow:0 0 22px rgba(139,92,246,0.14), 0 18px 45px rgba(0,0,0,0.28);
     }
 
     .project-card h3,
@@ -406,7 +410,7 @@
       align-items:center;
       justify-content:space-between;
       gap:14px;
-      padding:18px 18px;
+      padding:18px;
       border-radius:18px;
       background:rgba(15,23,42,0.72);
       border:1px solid rgba(255,255,255,0.08);
@@ -426,7 +430,7 @@
     .link-card:hover{
       transform:translateY(-5px);
       border-color:rgba(139,92,246,0.45);
-      box-shadow:0 0 22px rgba(139,92,246,0.16), 0 0 18px rgba(56,189,248,0.1);
+      box-shadow:0 0 22px rgba(139,92,246,0.16), 0 0 18px rgba(56,189,248,0.10);
     }
 
     .link-card:hover::after{
@@ -593,7 +597,7 @@
           Building <span class="gradient">premium Minecraft systems</span> with real developer style.
         </h1>
         <p>
-          I’m MasterArchiveX, owner of MasterStudios. I work on Skripts, bots, server setups, server hosting, websites, app development, server management, moderation systems, Discord server setups, and advanced configurations.
+          I’m MasterArchiveX, a developer and the owner of MasterStudios. I work on Skripts, bots, server setups, server hosting, websites, app development, server management, moderation systems, Discord server setups, and advanced configurations.
         </p>
 
         <div class="hero-actions">
@@ -604,18 +608,18 @@
     </div>
   </header>
 
-  <section id="about">
+  <section class="about" id="about">
     <div class="container">
       <div class="glass-card about-card">
         <h2 class="section-title">About <span>Me</span></h2>
         <p class="about-text">
-          I’m MasterArchiveX, a developer and the owner of MasterStudios. I work on Skripts, bots, server setups, server hosting, websites, app development, server management, moderation systems, Discord server setups, and advanced configurations. My main focus is building clean, premium Minecraft systems and polished development projects for servers and communities.
+          I’m MasterArchiveX, a developer and the owner of MasterStudios. I specialize in building premium Minecraft systems and development projects for servers and communities. My work includes Skripts, bots, server setups, server hosting, websites, app development, server management, moderation systems, Discord server setups, and advanced configurations. I also work with HTML & CSS, Java plugin development, the Paper API, Maven, Node.js, and Python. My focus is creating polished, high-quality systems that look professional, run smoothly, and provide real value for Minecraft servers and online communities.
         </p>
       </div>
     </div>
   </section>
 
-  <section id="skills">
+  <section class="skills" id="skills">
     <div class="container">
       <h2 class="section-title">My <span>Skills</span></h2>
 
@@ -640,7 +644,7 @@
 
       <h2 class="section-title learning-title">Currently <span>Learning</span></h2>
 
-      <div class="skills-list">
+      <div class="skills-list learning">
         <div class="skill-item"><i class="fa-solid fa-code"></i><span>Gradle</span></div>
         <div class="skill-item"><i class="fa-solid fa-code"></i><span>Kotlin</span></div>
         <div class="skill-item"><i class="fa-solid fa-server"></i><span>Linux</span></div>
@@ -688,7 +692,6 @@
       </p>
 
       <div class="positions-grid">
-
         <div class="position-card">
           <div class="card-header">
             <h3>BitForgeSMP</h3>
@@ -788,7 +791,6 @@
           <p class="members">750+ Members</p>
           <p class="description">Supported day-to-day staff operations, handled player reports and escalations, enforced server rules, and assisted the admin team by maintaining moderation across MasterSMP.</p>
         </div>
-
       </div>
     </div>
   </section>
@@ -828,7 +830,7 @@
             <div class="link-icon"><i class="fa-brands fa-discord"></i></div>
             <div class="link-text">
               <strong>Discord Server</strong>
-              <span>Join MasterStudios community</span>
+              <span>Join the MasterStudios community</span>
             </div>
           </div>
           <div class="link-arrow"><i class="fa-solid fa-arrow-right"></i></div>
@@ -853,7 +855,7 @@
       <div class="glass-card contact-card">
         <h2 class="section-title">Contact <span>Me</span></h2>
         <p class="section-sub">
-          Need a custom plugin, premium setup, website work, bot development, or a branded Minecraft system? Reach out through whichever platform works best for you.
+          Need a custom plugin, premium setup, website work, bot development, or a branded Minecraft system? Reach out through the platform that works best for you.
         </p>
 
         <div class="contact-grid">
@@ -888,7 +890,7 @@
   </section>
 
   <footer>
-    © 2026 MasterArchiveX · Built with GitHub Pages
+    © 2026 MasterArchiveX · Built from scratch
   </footer>
 
 </body>
