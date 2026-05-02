@@ -299,15 +299,15 @@ a:hover {
     box-shadow: 0 18px 25px -10px #4cc9f0;
 }
 
-/* experience cards */
-.experience-grid {
+/* projects cards */
+.projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
 }
 
-.experience-card {
+.projects-card {
     background: #14202f;
     border-radius: 28px;
     padding: 2rem 1.8rem;
@@ -316,13 +316,13 @@ a:hover {
     box-shadow: 0 18px 28px -18px #03060b;
 }
 
-.experience-card:hover {
+.projects-card:hover {
     transform: translateY(-15px) scale(1.02);
     border-color: #b084cc;
     box-shadow: 0 30px 35px -15px #b084cc;
 }
 
-.experience-card-title {
+.projects-card-title {
     font-size: 1.9rem;
     font-weight: 600;
     margin-bottom: 1rem;
@@ -331,14 +331,14 @@ a:hover {
     -webkit-text-fill-color: transparent;
 }
 
-.experience-desc {
+.projects-desc {
     color: #d0e8ff;
     margin: 1rem 0 1.2rem;
     font-size: 1rem;
     line-height: 1.5;
 }
 
-.experience-tech {
+.projects-tech {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
@@ -354,7 +354,7 @@ a:hover {
     color: #ccf0ff;
 }
 
-.experience-link {
+.projects-link {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -366,18 +366,18 @@ a:hover {
     transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
-.experience-link i {
+.projects-link i {
     font-size: 1rem;
     transition: transform 0.2s ease;
 }
 
-.experience-link:hover {
+.projects-link:hover {
     color: #4cc9f0;
     border-bottom-color: #4cc9f0;
     transform: translateX(6px);
 }
 
-.experience-link:hover i {
+.projects-link:hover i {
     transform: translateX(4px);
 }
 
