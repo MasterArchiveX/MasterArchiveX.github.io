@@ -381,14 +381,14 @@ a:hover {
     transform: translateX(4px);
 }
 
-/* EXPERIENCE SECTION */
 #experience{
     --accent:#60a5fa;
     --accent-soft:#c084fc;
     --muted:#cbd5e1;
 }
 
-.cards-grid{
+.cards-grid {
+    
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
     gap:24px;
