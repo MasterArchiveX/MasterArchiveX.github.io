@@ -381,127 +381,109 @@ a:hover {
     transform: translateX(4px);
 }
 
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 22px;
+/* EXPERIENCE SECTION */
+#experience{
+    --accent:#60a5fa;
+    --accent-soft:#c084fc;
+    --muted:#cbd5e1;
 }
 
-.card {
-    background: rgba(12, 14, 30, 0.82);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    padding: 26px;
-    position: relative;
-    overflow: hidden;
-    transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
-    opacity: 0;
-    transform: translateY(30px);
-    -webkit-backdrop-filter: blur(18px);
-    backdrop-filter: blur(18px);
+.cards-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:24px;
 }
 
-.card.visible,
-.card.reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
+.card{
+    background:linear-gradient(180deg,#050816,#030612);
+    border:1px solid rgba(192,132,252,.55);
+    border-radius:28px;
+    padding:28px;
+    position:relative;
+    overflow:hidden;
+    transition:.35s ease;
+    opacity:0;
+    transform:translateY(30px);
 }
 
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 24px 60px rgba(25, 29, 68, 0.28);
-    border-color: var(--accent-soft);
+.card.visible{
+    opacity:1;
+    transform:translateY(0);
 }
 
-.badge {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    padding: 6px 12px;
-    border-radius: 999px;
-    font-size: .78rem;
-    font-weight: 700;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: transparent;
-    background-image: linear-gradient(90deg, var(--accent), var(--accent-soft));
-    -webkit-background-clip: text;
-    background-clip: text;
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 25px rgba(192,132,252,.18);
 }
 
-.card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 10px;
+.badge{
+    position:absolute;
+    top:18px;
+    right:18px;
+    padding:7px 14px;
+    border-radius:999px;
+    font-size:.8rem;
+    font-weight:700;
+    border:1px solid rgba(96,165,250,.25);
+    color:#7dd3fc;
+    background:rgba(10,20,40,.55);
 }
 
-.meta-line {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-bottom: 10px;
+.card h3{
+    font-size:2rem;
+    margin-bottom:12px;
+    max-width:85%;
 }
 
-.meta-line .role {
-    font-weight: 700;
-    background: linear-gradient(90deg, var(--accent), var(--accent-soft));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+.meta-line{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:14px;
 }
 
-.meta-line .date {
-    font-size: .88rem;
-    color: var(--muted);
-    opacity: .82;
+.role{
+    color:#93c5fd;
+    font-weight:700;
 }
 
-.server-line {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 12px;
+.date{
+    color:#cbd5e1;
 }
 
-.server-line span {
-    font-size: .92rem;
-    color: var(--muted);
-    opacity: .85;
+.server-line{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:18px;
 }
 
-.join-link {
-    display: inline-block;
-    color: #ffffff;
-    font-weight: 700;
-    text-decoration: none;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(124, 110, 255, 0.28);
-    padding: 6px 12px;
-    border-radius: 999px;
-    transition: all .3s ease;
+.members{
+    color:#d1d5db;
 }
 
-.join-link:hover {
-    background: rgba(124, 110, 255, 0.18);
-    box-shadow: 0 0 18px rgba(124, 110, 255, 0.18);
-    border-color: var(--accent-soft);
+.join-link{
+    padding:8px 18px;
+    border-radius:999px;
+    border:1px solid rgba(96,165,250,.35);
+    color:#fff;
+    font-weight:700;
+    background:rgba(40,50,90,.55);
+    transition:.25s ease;
 }
 
-.card ul {
-    list-style: none;
-    margin-top: 14px;
-    padding-left: 18px;
+.join-link:hover{
+    background:#3b82f6;
 }
 
-.card li {
-    font-size: .95rem;
-    opacity: .83;
-    margin-bottom: 8px;
-    position: relative;
-    padding-left: 14px;
+.card ul{
+    padding-left:18px;
 }
 
+.card li{
+    margin-bottom:10px;
+    color:#dbeafe;
+}
 .card li::before {
     content: '•';
     position: absolute;
