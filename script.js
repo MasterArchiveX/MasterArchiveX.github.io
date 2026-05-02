@@ -72,27 +72,24 @@
     animate();
 })();
 
-// Scroll animation using Intersection Observer
-(function() {
-    const sections = document.querySelectorAll('.section');
-    
+// Scroll reveal animation
+(function () {
+    const items = document.querySelectorAll('.section, .card');
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Optional: keep visible after first trigger
             }
         });
     }, {
-        threshold: 0.2,
-        rootMargin: '0px 0px -50px 0px' // trigger a bit before section enters
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
     });
 
-    sections.forEach(section => observer.observe(section));
+    items.forEach(item => observer.observe(item));
 
-    // Also ensure hero is visible immediately on load (it will get class later if needed)
-    // But we want hero to be visible without waiting for scroll.
-    document.querySelector('.hero').classList.add('visible');
+    document.querySelector('.hero')?.classList.add('visible');
 })();
 
 // Mailto form (no action needed, but we keep the placeholder)
