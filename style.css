@@ -320,14 +320,13 @@ a{
 
 .projects-link{
     display:inline-block;
-    margin-top:16px;
+    margin-top:28px;
     color:var(--accent);
     font-weight:700;
 }
 
 /* ===============================
    EXPERIENCE
-   EXACT STYLE REQUESTED
 =============================== */
 .cards-grid{
     display:grid;
